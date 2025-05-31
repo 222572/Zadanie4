@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Диалоговая карта записи к врачу</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Главный экран -->
+    <div id="main-screen" class="window active">
+      <h2>Главный экран</h2>
+      <button onclick="goTo('form')">Записаться на приём</button>
+    </div>
+
+    <!-- Форма пациента -->
+    <div id="form" class="window">
+      <h2>Форма пациента</h2>
+      <input id="fio" placeholder="ФИО" />
+      <input id="dob" placeholder="Дата рождения" />
+      <input id="polis" placeholder="Полис ОМС" />
+      <button onclick="validateForm()">Далее</button>
+      <button onclick="goTo('main-screen')">Назад</button>
+    </div>
+
+    <!-- Выбор врача -->
+    <div id="select-doctor" class="window">
+      <h2>Выбор врача и времени</h2>
+      <select id="doctor">
+        <option>— Выберите врача —</option>
+        <option>Терапевт — Петров</option>
+        <option>Хирург — Иванов</option></select
+      ><br /><br />
+      <input type="date" id="date" />
+      <input type="time" id="time" />
+      <button onclick="confirmDoctor()">Записаться</button>
+      <button onclick="goTo('form')">Назад</button>
+    </div>
+
+    <!-- Успешная запись -->
+    <div id="success" class="window">
+      <h2>Вы успешно записаны!</h2>
+      <button onclick="goTo('main-screen')">На главный экран</button>
+    </div>
+
+    <!-- Альтернатива -->
+    <div id="alternative" class="window">
+      <h2>Нет подтверждения. Предлагаем альтернативу:</h2>
+      <label>Дата:</label>
+      <input type="date" id="alt-date" /><br />
+      <label>Время:</label>
+      <input type="time" id="alt-time" /><br /><br />
+      <button onclick="acceptAlternative()">Принять</button>
+      <button onclick="goTo('cancelled')">Отказаться</button>
+    </div>
+
+    <!-- Отмена -->
+    <div id="cancelled" class="window">
+      <h2>Запись отменена</h2>
+      <button onclick="goTo('main-screen')">На главный экран</button>
+    </div>
+
+    <!-- Ошибка -->
+    <div id="error-dialog" class="dialog">
+      <p>Ошибка! Заполните все поля.</p>
+      <button onclick="closeDialog('error-dialog')">Ок</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
